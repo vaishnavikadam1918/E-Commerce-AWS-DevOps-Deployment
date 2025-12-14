@@ -1,69 +1,61 @@
-# E-Commerce-AWS-DevOps-Deployment
+# 🚀 Deploy E-Commerce Spring Boot App on AWS using Terraform & Jenkins
 
-## 📌 Project Overview
-This project demonstrates how to deploy an **E-Commerce Spring Boot Application** on **AWS EC2** with **Amazon RDS** as the database, using **Terraform** for Infrastructure as Code (IaC) and **Jenkins** for CI/CD automation.
-
-It covers:
-- Automated infrastructure provisioning using Terraform  
-- EC2 deployment of Spring Boot application  
-- RDS database provisioning (MySQL/PostgreSQL)  
-- Jenkins pipeline for build → test → deploy  
-- Artifact handling via S3  
-- Secure secret management  
+## 📌 Overview
+End-to-end DevOps CI/CD project deploying a Spring Boot e-commerce application using Terraform, Jenkins, EC2, and RDS.
 
 ---
 
-## 🏗️ Architecture
-
-Developer → GitHub → Jenkins Pipeline
-|
-| (Terraform)
-v
-AWS Infrastructure Provisioning
-|
--------------------------------------
-| |
-EC2 Instance (App) RDS Database (Private)
-
-|| VPC Networking 
-
-## 🚀 Features
-
-### ✔️ Fully automated AWS setup using Terraform
-- VPC, Subnets, Route Tables  
-- EC2 Instance with user_data startup script  
-- RDS Database in private subnets  
-- Security groups & IAM roles  
-- S3 Remote backend for Terraform state  
-
-### ✔️ Jenkins CI/CD Pipeline
-- GitHub webhook triggers build  
-- Maven build for Spring Boot  
-- Upload JAR to S3 artifact bucket  
-- Terraform plan + apply  
-- Remote deployment on EC2 (SSH or S3 pull)  
-
-### ✔️ Spring Boot Application Setup
-- Runs as a **systemd service**  
-- Reads DB credentials securely via SSM or Secrets Manager  
+## 🛠️ Technology Stack
+| Category | Tools |
+|--------|------|
+| Cloud | AWS |
+| IaC | Terraform |
+| CI/CD | Jenkins |
+| App Server | EC2 |
+| Database | RDS (MySQL) |
+| Build Tool | Maven |
+| Language | Java (Spring Boot) |
+| OS | Amazon Linux |
+| SCM | GitHub |
 
 ---
 
-## 📂 Project Structure
-project-root/
-• app/ (Spring Boot Application)
-• terraform/
-   - main.tf
-   - variables.tf
-   - backend.tf
-   - providers.tf
-   - ec2.tf
-   - rds.tf
-• jenkins/
-   - Jenkinsfile
-• README.md
 
----
+## 🧩 Architecture
+![Architecture](img/architecture.png)
+
+## ⚙️ Terraform Apply
+![Terraform Apply](img/terraform%20%20apply.png)
+
+## ☁️ AWS EC2
+![EC2](img/db_instance.png)
+
+## 📡 Webhooks
+![webhooks](img/webhooks.png)
+
+## 🔄 Jenkins deployment
+![Jenkins](img/jenkins-deploy.png)
+
+## 🌐 Access
+
+http://<EC2_PUBLIC_IP>:8080
+
+## ❗ Troubleshooting
+
+| Issue                 | Solution                    |
+| --------------------- | --------------------------- |
+| SSH timeout           | Check EC2 SG port 22        |
+| App not loading       | Check port 8080 SG          |
+| DB connection failed  | Verify RDS SG               |
+| Jenkins deploy failed | Check SSH key & permissions |
+
+
+## ✅ Features
+- Terraform IaC
+- Jenkins CI/CD
+- systemd service
+- RDS MySQL backend
+- GitHub Webhooks
 
 ## ⚙️ Terraform Setup
 
@@ -139,14 +131,6 @@ cd app
 ./mvnw clean package
 java -jar target/*.jar
 
-## 🛠️ Troubleshooting
-| Issue                     | Fix                                      |
-| ------------------------- | ---------------------------------------- |
-| EC2 cannot connect to RDS | Check SG inbound rules + subnet routes   |
-| Terraform state errors    | Verify S3 bucket & DynamoDB table        |
-| Jenkins SSH failures      | Update EC2 SG + correct private key      |
-| App not starting          | Check logs: `journalctl -u ecommerce -f` |
-
 💰 Cost Considerations
 ---
 Use t3.micro/t3.small for cost-effective EC2
@@ -175,3 +159,4 @@ DevOps & Cloud Enthusiast
 - 💡 Passionate about automation, cloud deployments, and scalable architectures  
 - 🌐 GitHub: https://github.com/vaishnavikadam1918 
 - 📧 Email: vaishnavikadam8153@gmail.com
+
